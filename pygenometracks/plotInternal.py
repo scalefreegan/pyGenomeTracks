@@ -25,25 +25,24 @@ def plot(interval, tracks, options,
     """
     
     if ini is None:
-        ini = tempfile.NamedTemporaryFile()
+        ini_f = tempfile.NamedTemporaryFile()
+        ini = ini_f.name
         
     if out is None:
-        out = tempfile.NamedTemporaryFile()
+        out_f = tempfile.NamedTemporaryFile()
+        out = out_f.name
         
     ini_command = tracks.copy()
     ini_command.insert(0,"--trackFiles")
     ini_command.append("-o")
-    ini_command.append(ini.name)
+    ini_command.append(ini)
     
     plot_command = [
-        "--tracks={}".format(ini.name), 
+        "--tracks={}".format(ini), 
         "--region={}:{}-{}".format(interval[0],interval[1],interval[2]),
-        "--outFileName={}".format(out.name)
+        "--outFileName={}".format(out)
     ]
 
     makeTracksFile.main(ini_command, options, axis, geneSpacer)
     plotTracks.main(plot_command)
-    
-    ini.close()
-    out.close()
     
