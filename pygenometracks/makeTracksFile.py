@@ -56,11 +56,11 @@ height = 0.5
         for opt, value in theseoptions.items():
             m = re.compile(r"\n{}.+=.+?\n".format(opt)) #uncommented
             if len(m.findall(header_x)) >= 1:
-                # unique match to uncommented 
-                header_x = re.sub(r"\n{}.+=.+?\n".format(opt), 
+                # unique match to uncommented
+                header_x = re.sub(r"\n{}.+=.+?\n".format(opt),
                                         "\n{} = {}\n".format(opt, value),
                                         header_x)
-            else: 
+            else:
                 header_x = header_x.rstrip(" ") + opt + " = " + value + "\n"
     if "spacer" in options.keys():
         sys.stdout.write("Writing custom header spacer")
@@ -68,11 +68,11 @@ height = 0.5
         for opt, value in theseoptions.items():
             m = re.compile(r"\n{}.+=.+?\n".format(opt)) #uncommented
             if len(m.findall(header_s)) >= 1:
-                # unique match to uncommented 
-                header_s = re.sub(r"\n{}.+=.+?\n".format(opt), 
+                # unique match to uncommented
+                header_s = re.sub(r"\n{}.+=.+?\n".format(opt),
                                         "\n{} = {}\n".format(opt, value),
                                         header_s)
-            else: 
+            else:
                 header_s =header_s.rstrip(" ") + opt + " = " + value + "\n"
     if (axis!="bottom"):
         args.out.write(header_x)
@@ -100,12 +100,12 @@ height = 0.5
                             for opt, value in theseoptions.items():
                                 m = re.compile(r"\n{}.+=.+?\n".format(opt)) #uncommented
                                 if len(m.findall(default_values)) >= 1:
-                                    # unique match to uncommented 
-                                    default_values = re.sub(r"\n{}.+=.+?\n".format(opt), 
+                                    # unique match to uncommented
+                                    default_values = re.sub(r"\n{}.+=.+?\n".format(opt),
                                                             "\n{} = {}\n".format(opt, value),
                                                             default_values)
-                                else: 
-                                    default_values = default_values.rstrip(" ") + opt + " = " + value + "\n"   
+                                else:
+                                    default_values = default_values.rstrip(" ") + opt + " = " + value + "\n"
                             if "type" in options[label].keys():
                                 if geneSpacer:
                                     if options[label]["type"]=="genes":
@@ -113,7 +113,7 @@ height = 0.5
                         else:
                            sys.stdout.write("Couldn't find custom options for track {}\n".format(file_h.name))
                     if write_spacers:
-                        args.out.write(header_s)            
+                        args.out.write(header_s)
                     args.out.write("\n[{label}]\nfile={file}\n{default_values}".
                                    format(label=label, file=file_h.name, default_values=default_values))
                     if write_spacers:
@@ -126,4 +126,3 @@ height = 0.5
     if (axis=="bottom"):
         args.out.write(header_s)
         args.out.write(header_x)
-        
